@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Image Search</string>
+    <string name="error_occurred">Error Occurred</string>
+    <string name="min_3_char">Minimum 3 character required for search</string>
+    <string name="search">Search</string>
+</resources>
