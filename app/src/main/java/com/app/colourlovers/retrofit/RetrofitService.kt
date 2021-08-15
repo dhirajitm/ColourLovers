@@ -1,5 +1,7 @@
 package com.app.colourlovers.retrofit
 
+import com.app.colourlovers.data.AppConstants.BASE_URL
+import com.app.colourlovers.data.AppConstants.GET_COLOURS
 import com.app.colourlovers.data.ColourResponseItem
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -14,7 +16,7 @@ interface RetrofitService {
 
 //    https://www.colourlovers.com/api/colors?keywords=KEYWORDS&format=json&numResults=20
 
-    @GET("colors")
+    @GET(GET_COLOURS)
     fun getAllColours(@Query("keywords") keywords: String, @Query("format") format: String, @Query("numResult") numResult: Int, @Query("resultOffset") offset: Int): Call<List<ColourResponseItem>>
 
     companion object {
@@ -32,7 +34,7 @@ interface RetrofitService {
 
             if (retrofitService == null) {
                 val retrofit = Retrofit.Builder()
-                    .baseUrl("https://www.colourlovers.com/api/")
+                    .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(httpClient.build())
                     .build()

@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.app.colourlovers.R
 import com.app.colourlovers.data.ColourResponseItem
 import com.app.colourlovers.data.MainRepository
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private val retrofitService = RetrofitService.getInstance()
     private val TAG = "MainActivity"
     var adapter: ColorAdapter? = null
+    var adapterRec: ColoursRecyclerAdapter? = null
     var colourList = ArrayList<ColourResponseItem>()
 
     private val sharedPrefColour = "sharedPrefColour"
@@ -50,8 +52,13 @@ class MainActivity : AppCompatActivity() {
                     item.liked = true
                 }
             }
+/*
             adapter = ColorAdapter(this, colourList)
             mBinding.colourTilesRv.adapter = adapter
+*/
+            adapterRec = ColoursRecyclerAdapter(this, colourList)
+            mBinding.colourTilesRv.layoutManager = GridLayoutManager(this, 2)
+            mBinding.colourTilesRv.adapter = adapterRec
             mBinding.loadingBar.visibility = View.GONE
         })
 
